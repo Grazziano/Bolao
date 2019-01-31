@@ -9,4 +9,5 @@ interface UserRepositoryInterface
 {
   public function all():Collection;
   public function paginate(int $paginate = 10):LengthAwarePaginator;
+  public function findWhereLike(array $columns, string $search, string $column = 'id', string $order = 'ASC'):Collection;
 }

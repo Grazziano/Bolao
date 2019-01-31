@@ -15,13 +15,15 @@ class UserController extends Controller
      */
     public function index(UserRepositoryInterface $model, Request $request)
     {
+      $search = "";
         if (isset($request->search)) {
-          dd("ok");
+          $search = $request->search;
+          $list = $model->findWhereLike(['name', 'email'], $search, 'id', 'DESC');
         }else{
           $list = $model->paginate(4);
         }
-        
-        return View('admin.users.index', compact('list'));
+
+        return View('admin.users.index', compact('list', 'search'));
     }
 
     /**

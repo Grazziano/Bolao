@@ -26,7 +26,7 @@
                         <a href="#">Adicionar</a>
                       </div>
                       <div class="form-group mx-sm-3 mb-2">
-                        <input type="search" class="form-control" name="search" placeholder="busca">
+                        <input type="search" class="form-control" name="search" placeholder="busca" value="{{$search}}">
                       </div>
                       <button type="submit" class="btn btn-primary mb-2">Busca</button>
                     </form>
@@ -55,10 +55,13 @@
 
                       </tbody>
                     </table>
-                    {{-- Paginação --}}
-                    <div class="">
-                      {{$list}}
-                    </div>
+                    @if (!$search)
+                      {{-- Paginação --}}
+                      <div class="">
+                        {{$list->links()}}
+                      </div>
+                    @endif
+
 
                 </div>
             </div>
