@@ -37,6 +37,10 @@
 
                       </tbody>
                     </table>
+                    {{-- Paginação --}}
+                    <div class="">
+                      {{$list}}
+                    </div>
 
                 </div>
             </div>

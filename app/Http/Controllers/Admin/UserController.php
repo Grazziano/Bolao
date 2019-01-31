@@ -13,9 +13,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserRepositoryInterface $modelo)
+    public function index(UserRepositoryInterface $model)
     {
-        $list = $modelo->all();
+        // $list = $model->paginate(6);
+        $list = $model->paginate(6);
+
+        // dd($list);
+
         return View('admin.users.index', compact('list'));
     }
 
