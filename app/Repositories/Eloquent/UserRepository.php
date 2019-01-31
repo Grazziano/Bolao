@@ -8,12 +8,9 @@ use App\User;
 /**
  *
  */
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
 
-public function all()
-{
-$modelo = app(User::class);
-return $modelo->all();
-}
+  protected $model = User::class;
+
 }
