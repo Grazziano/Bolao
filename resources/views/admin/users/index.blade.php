@@ -14,6 +14,24 @@
                         </div>
                     @endif
 
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Lista de Usuários</li>
+                      </ol>
+                    </nav>
+
+                    <form class="form-inline" method="GET" action="{{route('users.index')}}">
+                      <div class="form-group mb-2">
+                        <a href="#">Adicionar</a>
+                      </div>
+                      <div class="form-group mx-sm-3 mb-2">
+                        <input type="search" class="form-control" name="search" placeholder="busca">
+                      </div>
+                      <button type="submit" class="btn btn-primary mb-2">Busca</button>
+                    </form>
+
+
                     <table class="table">
                       <thead>
                         <tr>
