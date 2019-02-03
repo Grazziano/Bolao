@@ -20,7 +20,7 @@ class UserController extends Controller
           $search = $request->search;
           $list = $model->findWhereLike(['name', 'email'], $search, 'id', 'DESC');
         }else{
-          $list = $model->paginate(4);
+          $list = $model->paginate(4, 'id', 'DESC');
         }
 
         return View('admin.users.index', compact('list', 'search'));

@@ -29,6 +29,7 @@
                         <input type="search" class="form-control" name="search" placeholder="busca" value="{{$search}}">
                       </div>
                       <button type="submit" class="btn btn-primary mb-2">Busca</button>
+                      <a class="btn btn-warning mb-2" href="{{route('users.index')}}">Limpar</a>
                     </form>
 
 
