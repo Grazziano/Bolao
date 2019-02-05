@@ -56,7 +56,7 @@
 
                       </tbody>
                     </table>
-                    @if (!$search)
+                    @if (!$search && $list)
                       {{-- Paginação --}}
                       <div class="">
                         {{$list->links()}}
