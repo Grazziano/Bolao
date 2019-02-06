@@ -2,6 +2,7 @@
 
 return [
 
+    'lang' => 'pt-br',
     'login' => 'Login',
     'register' => 'Register',
     'name' => 'Name',

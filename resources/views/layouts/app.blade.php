@@ -66,6 +66,9 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('lang') }}">{{ __('bolao.lang') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

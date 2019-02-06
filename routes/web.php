@@ -10,15 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/{locale?}', function ($locale = "pt-br") {
-//     App::setLocale($locale);
-//     return view('welcome');
-// });
+Route::get('lang', function () {
+    $lang = session('lang', 'pt-br');
+    if ($lang == 'pt-br') {
+      $lang = 'en';
+    }else{
+      $lang = 'pt-br';
+    }
+    session(['lang' => $lang]);
+    return  redirect()->back();
+})->name('lang');
 
 Route::get('/', function () {
+    $lang = session('lang', 'pt-br');
+
+    App::setLocale($lang);
     return view('welcome');
 });
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
