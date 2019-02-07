@@ -9,15 +9,11 @@
 
                 <div class="card-body">
 
-                    @alert(['msg'=>session('msg'), 'status'=>session('status')])
-                    @endalert
+                    @alert_component(['msg'=>session('msg'), 'status'=>session('status')])
+                    @endalert_component
 
-                    <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">@lang('bolao.home')</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@lang('bolao.list', ['page' => $page])</li>
-                      </ol>
-                    </nav>
+                    @breadcrumb_component(['page'=>$page, 'items'=>$breadcrumb ?? []])
+                    @endbreadcrumb_component
 
                     <form class="form-inline" method="GET" action="{{route($routeName.'.index')}}">
                       <div class="form-group mb-2">
