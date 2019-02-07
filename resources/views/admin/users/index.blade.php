@@ -46,9 +46,13 @@
                         @foreach ($list as $key => $value)
 
                           <tr>
-                            <th scope="row">{{$value->id}}</th>
-                            <td>{{$value->name}}</td>
-                            <td>{{$value->email}}</td>
+                            @foreach ($columnList as $key2 => $value2)
+                              @if ($key2 == 'id')
+                                <th scope="row"> @php echo $value->{$key2}; @endphp </th>
+                              @else
+                                <td> @php echo $value->{$key2}; @endphp </td>
+                              @endif
+                            @endforeach
 
                           </tr>
                         @endforeach
