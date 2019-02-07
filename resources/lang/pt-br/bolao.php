@@ -12,7 +12,7 @@ return [
     'remember-me' => 'Lembre-me',
     'forgot-your-password' => 'Esqueceu a Senha?',
     'reset-password' => 'Atualizar Senha',
-    'send-password-reset-link' => 'Enviar e-mail Para atualizar senha',
+    'send-password-reset-link' => 'Enviar link para atualizar senha',
     'add' => 'Adicionar',
     'search' => 'Busca',
     'clean' => 'Limpar',

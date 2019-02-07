@@ -22,8 +22,6 @@ Route::get('lang', function () {
 })->name('lang');
 
 Route::get('/', function () {
-    $lang = session('lang', 'pt-br');
-    App::setLocale($lang);
     return view('welcome');
 });
 
