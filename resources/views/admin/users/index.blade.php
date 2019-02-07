@@ -8,11 +8,9 @@
                 <div class="card-header">@lang('bolao.list', ['page' => $page])</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+
+                    @alert(['msg'=>session('msg'), 'status'=>session('status')])
+                    @endalert
 
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
