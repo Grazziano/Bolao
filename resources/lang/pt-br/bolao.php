@@ -20,5 +20,6 @@ return [
     'dashboard' => 'Painel de Controle',
     'list' => 'Lista de :page',
     'user_list' => 'Usuários',
+    'email' => 'E-mail',
 
 ];

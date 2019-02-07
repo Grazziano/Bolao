@@ -9,27 +9,40 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 class UserController extends Controller
 {
     private $route = 'users';
+    private $page;
+    private $paginate = 4;
+    private $search = ['name', 'email'];
+    private $model;
+
+    // Construtor
+    public function __construct(UserRepositoryInterface $model)
+    {
+      $this->page = trans('bolao.user_list');
+      $this->model = $model;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserRepositoryInterface $model, Request $request)
+    public function index(Request $request)
     {
+      $columnList = ['id'=>'#', 'name'=>trans('bolao.name'), 'email'=>trans('bolao.email')];
 
       $search = "";
         if (isset($request->search)) {
           $search = $request->search;
-          $list = $model->findWhereLike(['name', 'email'], $search, 'id', 'DESC');
+          $list = $this->model->findWhereLike($this->search, $search, 'id', 'DESC');
         }else{
-          $list = $model->paginate(4, 'id', 'DESC');
+          $list = $this->model->paginate($this->paginate, 'id', 'DESC');
         }
 
-        $page = trans('bolao.user_list');
+        $page = $this->page;
 
         $routeName = $this->route;
 
-        return View('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName'));
+        return View('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName', 'columnList'));
     }
 
     /**

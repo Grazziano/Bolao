@@ -36,9 +36,9 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">@lang('bolao.name')</th>
-                          <th scope="col">E-mail</th>
+                          @foreach ($columnList as $key => $value)
+                            <th scope="col">{{$value}}</th>
+                          @endforeach
 
                         </tr>
                       </thead>

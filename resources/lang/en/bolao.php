@@ -20,5 +20,6 @@ return [
     'dashboard' => 'Dashboard',
     'list' => ':page List',
     'user_list' => 'User',
+    'email' => 'E-mail',
 
 ];
