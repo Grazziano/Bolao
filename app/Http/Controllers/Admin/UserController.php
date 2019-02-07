@@ -8,6 +8,7 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
 {
+    private $route = 'users';
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +27,9 @@ class UserController extends Controller
 
         $page = trans('bolao.user_list');
 
-        return View('admin.users.index', compact('list', 'search', 'page'));
+        $routeName = $this->route;
+
+        return View('admin.'.$routeName.'.index', compact('list', 'search', 'page', 'routeName'));
     }
 
     /**
