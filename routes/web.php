@@ -23,7 +23,6 @@ Route::get('lang', function () {
 
 Route::get('/', function () {
     $lang = session('lang', 'pt-br');
-
     App::setLocale($lang);
     return view('welcome');
 });

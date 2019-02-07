@@ -13,5 +13,12 @@ return [
     'forgot-your-password' => 'Forgot your password?',
     'reset-password' => 'Reset Password',
     'send-password-reset-link' => 'Send Password Reset Link',
+    'add' => 'Add',
+    'search' => 'Search',
+    'clean' => 'Clean',
+    'home' => 'Home',
+    'dashboard' => 'Dashboard',
+    'list' => ':page List',
+    'user_list' => 'User',
 
 ];

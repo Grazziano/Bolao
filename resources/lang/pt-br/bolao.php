@@ -12,6 +12,13 @@ return [
     'remember-me' => 'Lembre-me',
     'forgot-your-password' => 'Esqueceu a Senha?',
     'reset-password' => 'Atualizar Senha',
-    'send-password-reset-link' => 'Enviar e-mail Para atualizar senha'
+    'send-password-reset-link' => 'Enviar e-mail Para atualizar senha',
+    'add' => 'Adicionar',
+    'search' => 'Busca',
+    'clean' => 'Limpar',
+    'home' => 'Principal',
+    'dashboard' => 'Painel de Controle',
+    'list' => 'Lista de :page',
+    'user_list' => 'Usuários',
 
 ];
