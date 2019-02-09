@@ -9,7 +9,6 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 class UserController extends Controller
 {
     private $route = 'users';
-    private $page;
     private $paginate = 4;
     private $search = ['name', 'email'];
     private $model;
@@ -17,7 +16,6 @@ class UserController extends Controller
     // Construtor
     public function __construct(UserRepositoryInterface $model)
     {
-      $this->page = trans('bolao.user_list');
       $this->model = $model;
     }
 
@@ -29,6 +27,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
       $columnList = ['id'=>'#', 'name'=>trans('bolao.name'), 'email'=>trans('bolao.email')];
+      $page = trans('bolao.user_list');
 
       $search = "";
         if (isset($request->search)) {
@@ -37,8 +36,6 @@ class UserController extends Controller
         }else{
           $list = $this->model->paginate($this->paginate, 'id', 'DESC');
         }
-
-        $page = $this->page;
 
         $routeName = $this->route;
 
