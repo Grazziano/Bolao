@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('components.table', 'table_component');
         Blade::component('components.paginate', 'paginate_component');
         Blade::component('components.page', 'page_component');
+        Blade::component('components.form', 'form_component');        
     }
 
     /**
