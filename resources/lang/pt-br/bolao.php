@@ -21,5 +21,7 @@ return [
     'list' => 'Lista de :page',
     'user_list' => 'Usuários',
     'email' => 'E-mail',
+    'user' => 'usuário',
+    'create_crud' => 'Adicionar :page',
 
 ];
