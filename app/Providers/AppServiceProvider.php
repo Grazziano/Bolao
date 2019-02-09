@@ -18,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('components.breadcrumb', 'breadcrumb_component');
         Blade::component('components.search', 'search_component');
         Blade::component('components.table', 'table_component');
+        Blade::component('components.paginate', 'paginate_component');
+        Blade::component('components.page', 'page_component');
     }
 
     /**
