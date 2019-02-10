@@ -88,11 +88,11 @@ class UserController extends Controller
       ])->validate();
 
       if ($this->model->create($data)) {
-        session()->flash('msg', 'Registro adicionado com sucesso!');
+        session()->flash('msg', trans('bolao.record_added_successfully'));
         session()->flash('status', 'success'); // success error notification
         return redirect()->back();
       }else{
-        session()->flash('msg', 'Erro ao adicionar registro!');
+        session()->flash('msg', trans('bolao.error_adding_record'));
         session()->flash('status', 'error'); // success error notification
         return redirect()->back();
       }
