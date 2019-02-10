@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -145,7 +146,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("Ok");
+        $data = $request->all();
+
+        if (!$data['password']) {
+          unset($data['password']); // Remove do array
+        }
+
+        Validator::make($data, [
+          'name' => 'required|string|max:255',
+          'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+          'password' => 'sometimes|required|string|min:6|confirmed',
+        ])->validate();
+
+        $ret = $this->model->update($data, $id);
+        if ($this->model->update($data, $id)) {
+          session()->flash('msg', trans('bolao.successfully_edited_record'));
+          session()->flash('status', 'success'); // success error notification
+          return redirect()->back();
+        }else{
+          session()->flash('msg', trans('bolao.error_editing_record'));
+          session()->flash('status', 'error'); // success error notification
+          return redirect()->back();
+        }
     }
 
     /**

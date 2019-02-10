@@ -26,6 +26,8 @@ return [
     'edit_crud' => 'Editar :page',
     'record_added_successfully' => 'Registro adicionado com sucesso!',
     'error_adding_record' => 'Erro ao adicionar registro!',
+    'error_editing_record' => 'Erro ao editar registro!',
+    'successfully_edited_record' => 'Registro editado com sucesso!',
     'action' => 'Ação',
     'edit' => 'Editar',
 

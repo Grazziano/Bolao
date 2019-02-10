@@ -26,6 +26,8 @@ return [
     'edit_crud' => 'Edit :page',
     'record_added_successfully' => 'Record added successfully!',
     'error_adding_record' => 'Error adding record!',
+    'error_editing_record' => 'Error editing record!',
+    'successfully_edited_record' => 'Successfully edited record!',
     'action' => 'Action',
     'edit' => 'Edit',
 
