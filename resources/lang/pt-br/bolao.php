@@ -25,5 +25,6 @@ return [
     'create_crud' => 'Adicionar :page',
     'record_added_successfully' => 'Registro adicionado com sucesso!',
     'error_adding_record' => 'Erro ao adicionar registro!',
+    'action' => 'Ação',
 
 ];
