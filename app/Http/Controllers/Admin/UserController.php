@@ -117,7 +117,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      $routeName = $this->route;
+      $register = $this->model->find($id);
+
+      if ($register) {
+        $page = trans('bolao.user_list');
+        $page2 = trans('bolao.user');
+
+        $breadcrumb = [
+          (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
+          (object)['url'=>route($routeName.".index"), 'title'=>trans('bolao.list', ['page' => $page])],
+          (object)['url'=>'', 'title'=>trans('bolao.edit_crud', ['page'=>$page2])],
+        ];
+
+        return View('admin.'.$routeName.'.edit', compact('register', 'page', 'page2', 'routeName', 'breadcrumb'));
+      }
+      return redirect()->route($routeName.'.index');
+
     }
 
     /**
@@ -129,7 +145,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("Ok");
     }
 
     /**

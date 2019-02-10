@@ -38,6 +38,16 @@ abstract class AbstractRepository
     return (bool) $this->model->create($data);
   }
 
+  public function find(int $id)
+  {
+    $register = $this->model->find($id);
+    if ($register) {
+      return $register;
+    }else {
+      return false;
+    }
+  }
+
   protected function resolveModel(){
     return app($this->model);
   }

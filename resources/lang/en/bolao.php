@@ -23,8 +23,10 @@ return [
     'email' => 'E-mail',
     'user' => 'user',
     'create_crud' => 'Add :page',
+    'edit_crud' => 'Edit :page',
     'record_added_successfully' => 'Record added successfully!',
     'error_adding_record' => 'Error adding record!',
     'action' => 'Action',
+    'edit' => 'Edit',
 
 ];
