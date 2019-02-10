@@ -40,8 +40,8 @@ class UserController extends Controller
 
         $routeName = $this->route;
 
-        // $request->session()->flash('msg', 'Olá alert!');
-        // $request->session()->flash('status', 'success'); // success error notification
+        //session()->flash('msg', 'Olá alert!');
+        //session()->flash('status', 'success'); // success error notification
 
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
@@ -87,7 +87,15 @@ class UserController extends Controller
         'password' => 'required|string|min:6|confirmed',
       ])->validate();
 
-      dd("Ok");
+      if ($this->model->create($data)) {
+        session()->flash('msg', 'Registro adicionado com sucesso!');
+        session()->flash('status', 'success'); // success error notification
+        return redirect()->back();
+      }else{
+        session()->flash('msg', 'Erro ao adicionar registro!');
+        session()->flash('status', 'error'); // success error notification
+        return redirect()->back();
+      }
     }
 
     /**
