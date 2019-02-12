@@ -105,9 +105,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+      $routeName = $this->route;
+      $register = $this->model->find($id);
+
+      if ($register) {
+        $page = trans('bolao.user_list');
+        $page2 = trans('bolao.user');
+
+        $breadcrumb = [
+          (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
+          (object)['url'=>route($routeName.".index"), 'title'=>trans('bolao.list', ['page' => $page])],
+          (object)['url'=>'', 'title'=>trans('bolao.show_crud', ['page'=>$page2])],
+        ];
+        $delete = false;
+        // Verifica se o usuário escolheu deletar
+        if ($request->delete ?? false) {
+          session()->flash('msg', trans('bolao.delete_this_record'));
+          session()->flash('status', 'error'); // success error notification
+          $delete = true;
+        }
+
+        return View('admin.'.$routeName.'.show', compact('register', 'page', 'page2', 'routeName', 'breadcrumb', 'delete'));
+      }
+      return redirect()->route($routeName.'.index');
     }
 
     /**
@@ -165,7 +187,7 @@ class UserController extends Controller
           return redirect()->back();
         }else{
           session()->flash('msg', trans('bolao.error_editing_record'));
-          session()->flash('status', 'error'); // success error notification
+          session()->flash('status', 'notification'); // success error notification
           return redirect()->back();
         }
     }
@@ -178,6 +200,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "Ok";
     }
 }

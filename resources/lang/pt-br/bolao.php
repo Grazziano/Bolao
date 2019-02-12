@@ -24,11 +24,14 @@ return [
     'user' => 'usuário',
     'create_crud' => 'Adicionar :page',
     'edit_crud' => 'Editar :page',
+    'show_crud' => 'Detalhe :page',
     'record_added_successfully' => 'Registro adicionado com sucesso!',
     'error_adding_record' => 'Erro ao adicionar registro!',
     'error_editing_record' => 'Erro ao editar registro!',
     'successfully_edited_record' => 'Registro editado com sucesso!',
     'action' => 'Ação',
     'edit' => 'Editar',
+    'delete' => 'Deletar',
+    'delete_this_record' => 'Deletar esse registro?',
 
 ];
