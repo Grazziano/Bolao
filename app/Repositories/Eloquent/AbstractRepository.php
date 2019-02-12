@@ -53,6 +53,16 @@ abstract class AbstractRepository
     }
   }
 
+  public function delete(int $id):Bool
+  {
+    $register = $this->find($id);
+    if ($register) {
+      return (bool) $register->delete();
+    }else {
+      return false;
+    }
+  }
+
   protected function resolveModel(){
     return app($this->model);
   }

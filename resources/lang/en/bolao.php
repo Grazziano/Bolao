@@ -33,5 +33,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'delete_this_record' => 'Delete this record?',
+    'registration_deleted_successfully' => 'Registration deleted successfully!',
+    'error_deleting_record' => 'Error deleting record!',
 
 ];

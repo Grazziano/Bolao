@@ -200,6 +200,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return "Ok";
+      if ($this->model->delete($id)) {
+        session()->flash('msg', trans('bolao.registration_deleted_successfully'));
+        session()->flash('status', 'success'); // success error notification
+      }else {
+        session()->flash('msg', trans('bolao.error_deleting_record'));
+        session()->flash('status', 'error'); // success error notification
+      }
+        $routeName = $this->route;
+        return redirect()->route($routeName.'.index');
     }
 }
