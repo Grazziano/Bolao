@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\PermissionRepositoryInterface;
 use Validator;
 
 class PermissionController extends Controller
