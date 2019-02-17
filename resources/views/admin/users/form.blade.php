@@ -30,4 +30,32 @@
     <label for="password_confirmation">{{__('bolao.confirm-password')}}</label>
     <input type="password" class="form-control" name="password_confirmation" value="">
   </div>
+
+  <div class="form-group col-6">
+    <label for="roles">{{__('bolao.role_list')}}</label>
+    <select class="form-control" multiple name="roles[]">
+      @foreach ($roles as $key => $value)
+        @php
+          $select = '';
+
+          if (old('roles') ?? false) {
+            foreach (old('roles') as $key => $id) {
+              if ($id == $value->id) {
+                $select = "selected";
+              }
+            }
+          }else {
+            if ($register ?? false) {
+              foreach ($register->roles as $key => $role) {
+                if ($role->id == $value->id) {
+                  $select = "selected";
+                }
+              }
+            }
+          }
+        @endphp
+        <option {{$select}} value="{{$value->id}}">{{$value->name}}</option>
+      @endforeach
+    </select>
+  </div>
 </div>
