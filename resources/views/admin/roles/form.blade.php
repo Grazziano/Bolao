@@ -21,7 +21,26 @@
     <label for="permissions">{{__('bolao.permission_list')}}</label>
     <select class="form-control" multiple name="permissions[]">
       @foreach ($permissions as $key => $value)
-        <option value="{{$value->id}}">{{$value->name}}</option>
+        @php
+          $select = '';
+
+          if (old('permissions') ?? false) {
+            foreach (old('permissions') as $key => $id) {
+              if ($id == $value->id) {
+                $select = "selected";
+              }
+            }
+          }else {
+            if ($register ?? false) {
+              foreach ($register->permissions as $key => $permission) {
+                if ($permission->id == $value->id) {
+                  $select = "selected";
+                }
+              }
+            }
+          }
+        @endphp
+        <option {{$select}} value="{{$value->id}}">{{$value->name}}</option>
       @endforeach
     </select>
   </div>
