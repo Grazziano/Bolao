@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\RoleRepositoryInterface;
+use App\Repositories\Contracts\PermissionRepositoryInterface;
 use Validator;
 
 class RoleController extends Controller
@@ -13,11 +14,13 @@ class RoleController extends Controller
     private $paginate = 4;
     private $search = ['name', 'description'];
     private $model;
+    private $modelPermission;
 
     // Construtor
-    public function __construct(RoleRepositoryInterface $model)
+    public function __construct(RoleRepositoryInterface $model, PermissionRepositoryInterface $modelPermission)
     {
       $this->model = $model;
+      $this->modelPermission = $modelPermission;
     }
 
     /**
@@ -62,13 +65,15 @@ class RoleController extends Controller
         $page = trans('bolao.role_list');
         $page_create = trans('bolao.role');
 
+        $permissions = $this->modelPermission->all('name', 'ASC');
+
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
           (object)['url'=>route($routeName.".index"), 'title'=>trans('bolao.list', ['page' => $page])],
           (object)['url'=>'', 'title'=>trans('bolao.create_crud', ['page'=>$page_create])],
         ];
 
-        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb', 'permissions'));
     }
 
     /**
@@ -145,13 +150,15 @@ class RoleController extends Controller
         $page = trans('bolao.role_list');
         $page2 = trans('bolao.role');
 
+        $permissions = $this->modelPermission->all('name', 'ASC');
+
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
           (object)['url'=>route($routeName.".index"), 'title'=>trans('bolao.list', ['page' => $page])],
           (object)['url'=>'', 'title'=>trans('bolao.edit_crud', ['page'=>$page2])],
         ];
 
-        return View('admin.'.$routeName.'.edit', compact('register', 'page', 'page2', 'routeName', 'breadcrumb'));
+        return View('admin.'.$routeName.'.edit', compact('register', 'page', 'page2', 'routeName', 'breadcrumb', 'permissions'));
       }
       return redirect()->route($routeName.'.index');
 
