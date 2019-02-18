@@ -15,13 +15,14 @@
                     @endif
 
                     <div class="row">
-
+                      @can ('list-users')
                       <div style="cursor:pointer" onclick="window.location = '{{route('users.index')}}'" class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                         <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.user_list')])</div>
                         <div class="card-body">
                           <p class="card-text">@lang('bolao.create_or_edit')</p>
                         </div>
                       </div>
+                      @endcan
 
                       <div style="cursor:pointer" onclick="window.location = '{{route('roles.index')}}'" class="card text-white bg-success mb-3" style="max-width: 18rem;">
                         <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.role_list')])</div>
