@@ -1,6 +1,8 @@
 <form class="form-inline" method="GET" action="{{route($routeName.'.index')}}">
   <div class="form-group mb-2">
+    @can ('create-user')
     <a href="{{route($routeName.'.create')}}">@lang('bolao.add')</a>
+    @endcan
   </div>
   <div class="form-group mx-sm-3 mb-2">
     <input type="search" class="form-control" name="search" placeholder="@lang('bolao.search')" value="{{$search}}">
