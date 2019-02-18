@@ -45,5 +45,5 @@ Route::middleware('auth')->namespace('Admin')->group(function () {
 });
 
 Route::namespace('Site')->group(function () {
-    Route::get('/', 'PrincipalController@index')->name('Principal');
+    Route::get('/', 'PrincipalController@index')->name('principal');
 });

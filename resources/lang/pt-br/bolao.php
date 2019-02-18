@@ -41,5 +41,6 @@ return [
     'create_or_edit' => 'Criar ou editar',
     'role_list' => 'Funções',
     'role' => 'Função',
+    'logout' => 'Sair',
 
 ];
