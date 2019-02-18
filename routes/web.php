@@ -31,8 +31,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function () {
     Route::resource('/users', 'UserController');
     Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:list-users');
@@ -40,4 +38,8 @@ Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function (
     Route::post('/users', 'UserController@store')->name('users.store')->middleware('can:create-users');
     Route::resource('/permissions', 'PermissionController');
     Route::resource('/roles', 'RoleController');
+});
+
+Route::middleware('auth')->namespace('Admin')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 });
