@@ -42,5 +42,10 @@ return [
     'role_list' => 'Funções',
     'role' => 'Função',
     'logout' => 'Sair',
+    'welcome_to_the_betting_site' => 'Bem vindo ao site de apostas!',
+    'betting_list' => 'Bolões',
+    'enjoy_with_your_family' => 'Curta com sua família',
+    'join_or_create' => 'Participe ou crie o seu!',
+    'check_the_list_here' => 'Confira aqui a lista',
 
 ];

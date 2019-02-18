@@ -42,5 +42,10 @@ return [
     'role_list' => 'Roles',
     'role' => 'Role',
     'logout' => 'Logout',
+    'welcome_to_the_betting_site' => 'Welcome to the betting site!',
+    'betting_list' => 'Betting List',
+    'enjoy_with_your_family' => 'Enjoy with your family',
+    'join_or_create' => 'Join or create your own!',
+    'check_the_list_here' => 'Check the list here',
 
 ];
