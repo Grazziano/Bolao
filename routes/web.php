@@ -21,7 +21,7 @@ Route::get('lang', function () {
     return  redirect()->back();
 })->name('lang');
 
-Route::get('/', function () {
+Route::get('/modelo', function () {
     return view('welcome');
 });
 
@@ -42,4 +42,8 @@ Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function (
 
 Route::middleware('auth')->namespace('Admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::namespace('Site')->group(function () {
+    Route::get('/', 'PrincipalController@index')->name('Principal');
 });
