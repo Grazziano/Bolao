@@ -19,6 +19,7 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/agency.min.css')}}" rel="stylesheet">
@@ -49,6 +50,9 @@
               <a class="nav-link" href="{{ route('register') }}">{{__('bolao.register')}}</a>
             </li>
           @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">@lang('bolao.dashboard')</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link">{{ Auth::user()->name }}</a>
           </li>

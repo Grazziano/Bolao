@@ -1,47 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">@lang('bolao.dashboard')</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+  @page_component(['col'=>8, 'page'=>$page])
 
-                    <div class="row">
-                      @can ('list-users')
-                      <div style="cursor:pointer" onclick="window.location = '{{route('users.index')}}'" class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.user_list')])</div>
-                        <div class="card-body">
-                          <p class="card-text">@lang('bolao.create_or_edit')</p>
-                        </div>
-                      </div>
-                      @endcan
+        @alert_component(['msg'=>session('msg'), 'status'=>session('status')])
+        @endalert_component
 
-                      <div style="cursor:pointer" onclick="window.location = '{{route('roles.index')}}'" class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                        <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.role_list')])</div>
-                        <div class="card-body">
-                          <p class="card-text">@lang('bolao.create_or_edit')</p>
-                        </div>
-                      </div>
-
-                      <div style="cursor:pointer" onclick="window.location = '{{route('permissions.index')}}'" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                        <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.permission_list')])</div>
-                        <div class="card-body">
-                          <p class="card-text">@lang('bolao.create_or_edit')</p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
+        <div class="row">
+          @can ('list-users')
+          <div style="cursor:pointer" onclick="window.location = '{{route('users.index')}}'" class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.user_list')])</div>
+            <div class="card-body">
+              <p class="card-text">@lang('bolao.create_or_edit')</p>
             </div>
+          </div>
+          @endcan
+
+          <div style="cursor:pointer" onclick="window.location = '{{route('roles.index')}}'" class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.role_list')])</div>
+            <div class="card-body">
+              <p class="card-text">@lang('bolao.create_or_edit')</p>
+            </div>
+          </div>
+
+          <div style="cursor:pointer" onclick="window.location = '{{route('permissions.index')}}'" class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header">@lang('bolao.list', ['page'=>__('bolao.permission_list')])</div>
+            <div class="card-body">
+              <p class="card-text">@lang('bolao.create_or_edit')</p>
+            </div>
+          </div>
+
         </div>
-    </div>
-</div>
+
+  @endpage_component
+
 @endsection
