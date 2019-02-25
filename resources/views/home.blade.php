@@ -11,7 +11,7 @@
         <div id="portfolio">
 
             <div class="row">
-              @can ('list-users')
+              @can ('list-user')
               <div style="cursor:pointer" onclick="window.location = '{{route('users.index')}}'" class="col-md-4 col-sm-6 portfolio-item">
                 <a class="portfolio-link">
                   <div class="portfolio-hover">

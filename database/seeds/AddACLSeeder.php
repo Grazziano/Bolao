@@ -11,6 +11,32 @@ class AddACLSeeder extends Seeder
      */
     public function run()
     {
+      // Roles
+      $adminACL = \App\Role::firstOrCreate(['name'=>'Admin'], [
+        'description'=>'Função de Administrador',
+      ]);
+
+      $gerenteACL = \App\Role::firstOrCreate(['name'=>'Gerente'], [
+        'description'=>'Função de Gerente',
+      ]);
+
+      $usuarioACL = \App\Role::firstOrCreate(['name'=>'Usuário'], [
+        'description'=>'Função de Usuário',
+      ]);
+
+      // User com Role
+      $userAdmin = \App\User::find(1);
+      $userGerente = \App\User::find(2);
+
+      // Faz o relacionamento de usuário com funções
+      $userAdmin->roles()->attach($adminACL);
+      $userGerente->roles()->attach($gerenteACL);
+
+      // Cria as permissões
+      $listUser = \App\Permission::firstOrCreate(['name'=>'list-user'], [
+        'description'=>'Listar registros',
+      ]);
+
         echo "Registros de ACL criados!\n";
     }
 }

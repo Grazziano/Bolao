@@ -12,17 +12,17 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-      $admin = \App\User::firstOrCreate(['email'=>'grazzianofagundes@gmail.com'], [
+      \App\User::firstOrCreate(['email'=>'grazzianofagundes@gmail.com'], [
         'name'=>'Grazziano',
         'password'=>Hash::make('123456'),
       ]);
 
-      $admin = \App\User::firstOrCreate(['email'=>'laracroft@mail.com'], [
+      \App\User::firstOrCreate(['email'=>'laracroft@mail.com'], [
         'name'=>'Lara Croft',
         'password'=>Hash::make('123456'),
       ]);
 
-      $admin = \App\User::firstOrCreate(['email'=>'indianajones@mail.com'], [
+      \App\User::firstOrCreate(['email'=>'indianajones@mail.com'], [
         'name'=>'Indiana Jones',
         'password'=>Hash::make('123456'),
       ]);
