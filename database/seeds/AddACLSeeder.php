@@ -38,7 +38,19 @@ class AddACLSeeder extends Seeder
       ]);
 
       $createUser = \App\Permission::firstOrCreate(['name'=>'create-user'], [
-        'description'=>'Criar registros',
+        'description'=>'Criar registro',
+      ]);
+
+      $editUser = \App\Permission::firstOrCreate(['name'=>'edit-user'], [
+        'description'=>'Editar registro',
+      ]);
+
+      $showUser = \App\Permission::firstOrCreate(['name'=>'show-user'], [
+        'description'=>'Visualizar registro',
+      ]);
+
+      $deleteUser = \App\Permission::firstOrCreate(['name'=>'delete-user'], [
+        'description'=>'Deletar registro',
       ]);
 
       // Relacionamento de funções com permissões
