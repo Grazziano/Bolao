@@ -47,5 +47,6 @@ return [
     'enjoy_with_your_family' => 'Curta com sua família',
     'join_or_create' => 'Participe ou crie o seu!',
     'check_the_list_here' => 'Confira aqui a lista',
+    'access_denied' => 'Acesso negado!',
 
 ];

@@ -9,6 +9,8 @@ use App\Repositories\Contracts\RoleRepositoryInterface;
 use Validator;
 use Illuminate\Validation\Rule;
 
+use Illuminate\Support\Facades\Gate;
+
 class UserController extends Controller
 {
     private $route = 'users';
@@ -31,6 +33,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+      //$this->authorize('list-user');
+
+      if(Gate::denies('list-user')){
+        session()->flash('msg', trans('bolao.access_denied'));
+        session()->flash('status', 'error'); // success error notification
+        return redirect()->route('home');
+      }
+
       $columnList = ['id'=>'#', 'name'=>trans('bolao.name'), 'email'=>trans('bolao.email')];
       $page = trans('bolao.user_list');
 
@@ -62,6 +72,8 @@ class UserController extends Controller
      */
     public function create()
     {
+      $this->authorize('create-user');
+
         $routeName = $this->route;
         $page = trans('bolao.user_list');
         $page_create = trans('bolao.user');

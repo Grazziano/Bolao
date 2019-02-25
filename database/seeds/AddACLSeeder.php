@@ -37,6 +37,14 @@ class AddACLSeeder extends Seeder
         'description'=>'Listar registros',
       ]);
 
+      $createUser = \App\Permission::firstOrCreate(['name'=>'create-user'], [
+        'description'=>'Criar registros',
+      ]);
+
+      // Relacionamento de funções com permissões
+        $gerenteACL->permissions()->attach($listUser);
+        $gerenteACL->permissions()->attach($createUser);
+
         echo "Registros de ACL criados!\n";
     }
 }
