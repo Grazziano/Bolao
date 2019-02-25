@@ -4,26 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Repositories\Contracts\RoleRepositoryInterface;
+use App\Repositories\Contracts\BettingRepositoryInterface;
 use Validator;
-use Illuminate\Validation\Rule;
 
-use Illuminate\Support\Facades\Gate;
-
-class UserController extends Controller
+class BettingController extends Controller
 {
-    private $route = 'users';
+    private $route = 'bettings';
     private $paginate = 5;
-    private $search = ['name', 'email'];
+    private $search = ['title'];
     private $model;
-    private $modelRole;
 
     // Construtor
-    public function __construct(UserRepositoryInterface $model, RoleRepositoryInterface $modelRole)
+    public function __construct(BettingRepositoryInterface $model)
     {
       $this->model = $model;
-      $this->modelRole = $modelRole;
     }
 
     /**
@@ -33,16 +27,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-      //$this->authorize('list-user');
-
-      if(Gate::denies('list-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
-      $columnList = ['id'=>'#', 'name'=>trans('bolao.name'), 'email'=>trans('bolao.email')];
-      $page = trans('bolao.user_list');
+      $columnList = ['id'=>'#',
+        'title'=>trans('bolao.title'),
+        'current_round'=>trans('bolao.current_round'),
+        'value_result'=>trans('bolao.value_result'),
+        'extra_value'=>trans('bolao.extra_value'),
+        'value_fee'=>trans('bolao.value_fee'),
+      ];
+      $page = trans('bolao.betting_list');
 
       $search = "";
         if (isset($request->search)) {
@@ -72,17 +64,9 @@ class UserController extends Controller
      */
     public function create()
     {
-      if(Gate::denies('create-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
         $routeName = $this->route;
-        $page = trans('bolao.user_list');
-        $page_create = trans('bolao.user');
-
-        $roles = $this->modelRole->all('name', 'ASC');
+        $page = trans('bolao.betting_list');
+        $page_create = trans('bolao.bet');
 
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
@@ -90,7 +74,7 @@ class UserController extends Controller
           (object)['url'=>'', 'title'=>trans('bolao.create_crud', ['page'=>$page_create])],
         ];
 
-        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb', 'roles'));
+        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
     }
 
     /**
@@ -101,18 +85,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      if(Gate::denies('create-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
       $data = $request->all();
 
       Validator::make($data, [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:6|confirmed',
+        'title' => 'required|string|max:255',
+        'value_result' => 'required',
+        'extra_value' => 'required',
+        'value_fee' => 'required',
       ])->validate();
 
       if ($this->model->create($data)) {
@@ -134,18 +113,12 @@ class UserController extends Controller
      */
     public function show($id, Request $request)
     {
-      if(Gate::denies('show-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
       $routeName = $this->route;
       $register = $this->model->find($id);
 
       if ($register) {
-        $page = trans('bolao.user_list');
-        $page2 = trans('bolao.user');
+        $page = trans('bolao.betting_list');
+        $page2 = trans('bolao.bet');
 
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
@@ -173,20 +146,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      if(Gate::denies('edit-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
       $routeName = $this->route;
       $register = $this->model->find($id);
 
       if ($register) {
-        $page = trans('bolao.user_list');
-        $page2 = trans('bolao.user');
-
-        $roles = $this->modelRole->all('name', 'ASC');
+        $page = trans('bolao.betting_list');
+        $page2 = trans('bolao.bet');
 
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
@@ -194,7 +159,7 @@ class UserController extends Controller
           (object)['url'=>'', 'title'=>trans('bolao.edit_crud', ['page'=>$page2])],
         ];
 
-        return View('admin.'.$routeName.'.edit', compact('register', 'page', 'page2', 'routeName', 'breadcrumb', 'roles'));
+        return View('admin.'.$routeName.'.edit', compact('register', 'page', 'page2', 'routeName', 'breadcrumb'));
       }
       return redirect()->route($routeName.'.index');
 
@@ -209,23 +174,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-      if(Gate::denies('edit-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
-        $this->authorize('edit-user');
         $data = $request->all();
 
-        if (!$data['password']) {
-          unset($data['password']); // Remove do array
-        }
-
         Validator::make($data, [
-          'name' => 'required|string|max:255',
-          'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
-          'password' => 'sometimes|required|string|min:6|confirmed',
+          'title' => 'required|string|max:255',
+          'value_result' => 'required',
+          'extra_value' => 'required',
+          'value_fee' => 'required',
         ])->validate();
 
         $ret = $this->model->update($data, $id);
@@ -248,12 +203,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      if(Gate::denies('delete-user')){
-        session()->flash('msg', trans('bolao.access_denied'));
-        session()->flash('status', 'error'); // success error notification
-        return redirect()->route('home');
-      }
-
       if ($this->model->delete($id)) {
         session()->flash('msg', trans('bolao.registration_deleted_successfully'));
         session()->flash('status', 'success'); // success error notification

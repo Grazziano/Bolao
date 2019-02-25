@@ -48,5 +48,11 @@ return [
     'join_or_create' => 'Join or create your own!',
     'check_the_list_here' => 'Check the list here',
     'access_denied' => 'Access denied!',
+    'title' => 'Title',
+    'current_round' => 'Current round',
+    'value_result' => 'Value result',
+    'extra_value' => 'Extra value',
+    'value_fee' => 'Value Fee',
+    'bet' => 'Bet',
 
 ];

@@ -11,7 +11,7 @@ use Validator;
 class RoleController extends Controller
 {
     private $route = 'roles';
-    private $paginate = 4;
+    private $paginate = 5;
     private $search = ['name', 'description'];
     private $model;
     private $modelPermission;

@@ -48,5 +48,11 @@ return [
     'join_or_create' => 'Participe ou crie o seu!',
     'check_the_list_here' => 'Confira aqui a lista',
     'access_denied' => 'Acesso negado!',
+    'title' => 'Título',
+    'current_round' => 'Rodada Atual',
+    'value_result' => 'Valor resultado',
+    'extra_value' => 'Valor extra',
+    'value_fee' => 'Taxa',
+    'bet' => 'Aposta',
 
 ];
