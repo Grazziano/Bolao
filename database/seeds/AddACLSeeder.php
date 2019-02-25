@@ -53,6 +53,10 @@ class AddACLSeeder extends Seeder
         'description'=>'Deletar registro',
       ]);
 
+      $acessoACL = \App\Permission::firstOrCreate(['name'=>'acl'], [
+        'description'=>'Acesso ao ACL',
+      ]);
+
       // Relacionamento de funções com permissões
         $gerenteACL->permissions()->attach($listUser);
         $gerenteACL->permissions()->attach($createUser);
