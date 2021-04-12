@@ -19,4 +19,19 @@ class Betting extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function getFirstNameAttribute($value)
+  {
+    return ucfirst($value);
+  }
+
+  public function getTitleAttribute($value)
+  {
+    return ucfirst($value);
+  }
+
+  public function getUserNameAttribute()
+  {
+    return $this->user->name;
+  }
 }
