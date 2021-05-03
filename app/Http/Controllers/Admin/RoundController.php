@@ -29,7 +29,7 @@ class RoundController extends Controller
     {
       $columnList = ['id'=>'#',
         'title'=>trans('bolao.title'),
-        'betting_title'=>trans('bolao.roundting_title'),
+        'betting_title'=>trans('bolao.bet'),
         'date_start'=>trans('bolao.date_start'),
         'date_end'=>trans('bolao.date_end'),
       ];
