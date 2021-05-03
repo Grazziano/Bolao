@@ -22,4 +22,28 @@ class Round extends Model
     {
         return $this->betting->title;
     }
+
+    public function setDateStartAttribute($value)
+    {
+        $date = date_create($value);
+        $this->attributes['date_start'] = date_format($date, 'Y-m-d H:i:s');
+    }
+
+    public function setDateEndAttribute($value)
+    {
+        $date = date_create($value);
+        $this->attributes['date_end'] = date_format($date, 'Y-m-d H:i:s');
+    }
+
+    public function getDateStartSiteAttribute()
+    {
+        $date = date_create($this->date_start);
+        return date_format($date, 'd/m/Y H:i:s');
+    }
+
+    public function getDateEndSiteAttribute()
+    {
+        $date = date_create($this->date_end);
+        return date_format($date, 'd/m/Y H:i:s');
+    }
 }

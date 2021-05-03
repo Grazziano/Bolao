@@ -30,8 +30,8 @@ class RoundController extends Controller
       $columnList = ['id'=>'#',
         'title'=>trans('bolao.title'),
         'betting_title'=>trans('bolao.bet'),
-        'date_start'=>trans('bolao.date_start'),
-        'date_end'=>trans('bolao.date_end'),
+        'date_start_site'=>trans('bolao.date_start'),
+        'date_end_site'=>trans('bolao.date_end'),
       ];
       $page = trans('bolao.round_list');
 
@@ -91,6 +91,7 @@ class RoundController extends Controller
 
       Validator::make($data, [
         'title' => 'required|string|max:255',
+        'betting_id' => 'required',
         'date_start' => 'required',
         'date_end' => 'required',
       ])->validate();
@@ -179,6 +180,7 @@ class RoundController extends Controller
 
         Validator::make($data, [
             'title' => 'required|string|max:255',
+            'betting_id' => 'required',
             'date_start' => 'required',
             'date_end' => 'required',
         ])->validate();
