@@ -67,13 +67,16 @@ class RoundController extends Controller
         $page = trans('bolao.round_list');
         $page_create = trans('bolao.round');
 
+        $user = auth()->user();
+        $listRel = $user->bettings;
+
         $breadcrumb = [
           (object)['url'=>route('home'), 'title'=>trans('bolao.home')],
           (object)['url'=>route($routeName.".index"), 'title'=>trans('bolao.list', ['page' => $page])],
           (object)['url'=>'', 'title'=>trans('bolao.create_crud', ['page'=>$page_create])],
         ];
 
-        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb'));
+        return View('admin.'.$routeName.'.create', compact('page', 'page_create', 'routeName', 'breadcrumb', 'listRel'));
     }
 
     /**
