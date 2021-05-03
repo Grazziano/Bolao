@@ -54,5 +54,10 @@ return [
     'extra_value' => 'Extra value',
     'value_fee' => 'Value Fee',
     'bet' => 'Bet',
+    'betting_title' => 'Betting',
+    'date_start' => 'Initial date',
+    'date_end' => 'Final date',
+    'round_list' => 'Rounds',
+    'round' => 'Round',
 
 ];

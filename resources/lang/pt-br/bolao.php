@@ -54,5 +54,10 @@ return [
     'extra_value' => 'Valor extra',
     'value_fee' => 'Taxa',
     'bet' => 'Aposta',
+    'betting_title' => 'Bolão',
+    'date_start' => 'Data ini',
+    'date_end' => 'Data fim',
+    'round_list' => 'Rodadas',
+    'round' => 'Rodada',
 
 ];
