@@ -37,6 +37,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Betting');
     }
 
+    public function getRoundsAttribute()
+    {
+        $bettings = $this->bettings;
+        $rounds = [];
+        foreach ($bettings as $key => $value) {
+            $rounds[] = $value->rounds;
+        }
+        return array_collapse($rounds);
+    }
+
     public function hasRoles($roles)
     {
         $userRoles = $this->roles;
@@ -45,14 +55,14 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-      return $this->hasRole("Admin");
+        return $this->hasRole("Admin");
     }
 
     public function hasRole($role)
     {
         if (is_string($role)) {
-          $role = Role::where('name', '=', $role)->firstOrFail();
+            $role = Role::where('name', '=', $role)->firstOrFail();
         }
-        return (boolean) $this->roles()->find($role->id);
+        return (bool) $this->roles()->find($role->id);
     }
 }

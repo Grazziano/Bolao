@@ -37,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\RoleRepositoryInterface', 'App\Repositories\Eloquent\RoleRepository');
         $this->app->bind('App\Repositories\Contracts\BettingRepositoryInterface', 'App\Repositories\Eloquent\BettingRepository');
         $this->app->bind('App\Repositories\Contracts\RoundRepositoryInterface', 'App\Repositories\Eloquent\RoundRepository');
+        $this->app->bind('App\Repositories\Contracts\MatchRepositoryInterface', 'App\Repositories\Eloquent\MatchRepository');
     }
 }
