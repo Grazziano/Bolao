@@ -70,7 +70,7 @@ class MatchController extends Controller
         $page_create = trans('bolao.match');
 
         $user = auth()->user();
-        $listRel = $user->bettings;
+        $listRel = $user->rounds;
 
         $breadcrumb = [
             (object)['url' => route('home'), 'title' => trans('bolao.home')],
@@ -162,8 +162,8 @@ class MatchController extends Controller
             $page2 = trans('bolao.match');
 
             $user = auth()->user();
-            $listRel = $user->bettings;
-            $register_id = $register->betting_id;
+            $listRel = $user->rounds;
+            $register_id = $register->round_id;
 
             $breadcrumb = [
                 (object)['url' => route('home'), 'title' => trans('bolao.home')],
