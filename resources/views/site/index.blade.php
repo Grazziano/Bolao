@@ -37,14 +37,18 @@
                         <div class="portfolio-caption">
                             <h4>{{ $value->title }}</h4>
                             <p class="text-muted">{{ $value->user_name }}</p>
+
+                            @form_component(['action'=>route("sign", $value->id), 'method'=>"POST"])
                             <a class="btn btn-info" href="">Ver Rodadas</a>
                             <button class="btn btn-danger">Deixar Bolão</button>
                             <button class="btn btn-success">Participar</button>
+                            @endform_component
+
                         </div>
                     </div>
                 @endforeach
 
-                {{-- <div class="col-md-4 col-sm-6 portfolio-item">
+        {{-- <div class="col-md-4 col-sm-6 portfolio-item">
                     <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -114,7 +118,7 @@
                         <p class="text-muted">Photography</p>
                     </div>
                 </div> --}}
-            </div>
+        </div>
         </div>
     </section>
 

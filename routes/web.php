@@ -13,9 +13,9 @@
 Route::get('lang', function () {
     $lang = session('lang', 'pt-br');
     if ($lang == 'pt-br') {
-      $lang = 'en';
-    }else{
-      $lang = 'pt-br';
+        $lang = 'en';
+    } else {
+        $lang = 'pt-br';
     }
     session(['lang' => $lang]);
     return  redirect()->back();
@@ -52,4 +52,8 @@ Route::middleware('auth')->namespace('Admin')->group(function () {
 
 Route::namespace('Site')->group(function () {
     Route::get('/', 'PrincipalController@index')->name('principal');
+});
+
+Route::middleware('auth')->namespace('Site')->group(function () {
+    Route::post('/sign/{id}', 'PrincipalController@sign')->name('sign');
 });
