@@ -44,4 +44,9 @@ class Betting extends Model
     {
         return $this->hasMany('App\Round');
     }
+
+    public function bettors()
+    {
+        return $this->belongsToMany('App\Betting');
+    }
 }
