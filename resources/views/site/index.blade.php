@@ -26,7 +26,7 @@
 
                 @foreach ($list as $key => $value)
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{ $value->id }}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
                                     <i class="fas fa-plus fa-3x"></i>
@@ -40,13 +40,16 @@
 
                             @form_component(['action'=>route("sign", $value->id), 'method'=>"POST"])
                             <a class="btn btn-info" href="">Ver Rodadas</a>
-                            <button class="btn btn-danger">Deixar Bolão</button>
-                            <button class="btn btn-success">Participar</button>
+                            @if ($value->subscriber ?? false)
+                                <button class="btn btn-danger">Deixar Bolão</button>
+                            @else
+                                <button class="btn btn-success">Participar</button>
+                            @endif
                             @endform_component
 
-                        </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
         {{-- <div class="col-md-4 col-sm-6 portfolio-item">
                     <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
@@ -146,12 +149,17 @@
                                         <li>Valor Extra: {{ $value->extra_value }}</li>
                                         <li>Taxa: {{ $value->value_fee }}</li>
                                     </ul>
+                                    @form_component(['action'=>route("sign", $value->id), 'method'=>"POST"])
                                     <a class="btn btn-info" href="">Ver Rodadas</a>
-                                    <button class="btn btn-danger">Deixar Bolão</button>
-                                    <button class="btn btn-success">Participar</button>
+                                    @if ($value->subscriber ?? false)
+                                        <button class="btn btn-danger">Deixar Bolão</button>
+                                    @else
+                                        <button class="btn btn-success">Participar</button>
+                                    @endif
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times"></i>
                                         Close Project</button>
+                                    @endform_component
                                 </div>
                             </div>
                         </div>

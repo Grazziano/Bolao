@@ -24,7 +24,19 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
 
     public function list(): Collection
     {
-        return Betting::all();
+        $list = Betting::all();
+        $user = Auth()->user();
+
+        if ($user) {
+            $myBetting = $user->myBetting;
+            foreach ($list as $key => $value) {
+                if ($myBetting->contains($value)) {
+                    $value->subscriber = true;
+                }
+            }
+        }
+
+        return $list;
     }
 
     public function update(array $data, int $id): Bool
