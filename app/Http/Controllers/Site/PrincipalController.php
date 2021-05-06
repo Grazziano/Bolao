@@ -14,6 +14,11 @@ class PrincipalController extends Controller
         return view('site.index', compact('list'));
     }
 
+    public function signNoLogin($id)
+    {
+        return redirect()->route('principal');
+    }
+
     public function sign($id)
     {
         dd("OK" . $id);
