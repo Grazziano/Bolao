@@ -16,11 +16,14 @@ class PrincipalController extends Controller
 
     public function signNoLogin($id)
     {
-        return redirect()->route('principal');
+        // return redirect()->route('principal');
+        return redirect(route('principal') . '#portifolio');
     }
 
-    public function sign($id)
+    public function sign($id, BettingRepositoryInterface $bettingRepository)
     {
-        dd("OK" . $id);
+        // dd($bettingRepository->BettingUser($id));
+        $bettingRepository->BettingUser($id);
+        return redirect(route('principal') . '#portifolio');
     }
 }

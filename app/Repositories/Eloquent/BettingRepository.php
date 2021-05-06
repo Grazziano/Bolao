@@ -22,7 +22,7 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
         return (bool) $this->model->create($data);
     }
 
-    public function list():Collection
+    public function list(): Collection
     {
         return Betting::all();
     }
@@ -37,5 +37,18 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
         } else {
             return false;
         }
+    }
+
+    public function BettingUser($id)
+    {
+        $user = Auth()->user();
+        $betting = Betting::find($id);
+        if ($betting) {
+            $ret = $user->myBetting()->toggle($betting->id);
+            if (count($ret['attached'])) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -47,6 +47,6 @@ class Betting extends Model
 
     public function bettors()
     {
-        return $this->belongsToMany('App\Betting');
+        return $this->belongsToMany('App\User');
     }
 }
