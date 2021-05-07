@@ -60,6 +60,30 @@ class PrincipalController extends Controller
     public function matches($round_id, BettingRepositoryInterface $bettingRepository)
     {
         $list = $bettingRepository->matches($round_id);
-        dd($list->toArray());
+        // dd($list->toArray());
+
+        if (!$list) {
+            return redirect()->route('principal');
+        }
+
+        $betting = $bettingRepository->findBetting($round_id);
+        $page = trans('bolao.match_list');
+        $routeName = "rounds.matches";
+
+        $columnList = [
+            'id' => '#',
+            'title' => trans('bolao.title'),
+            'round_title' => trans('bolao.round'),
+            'stadium' => trans('bolao.stadium'),
+            'date_site' => trans('bolao.date'),
+        ];
+
+        $breadcrumb = [
+            (object)['url' => route('principal') . '#portfolio', 'title' => trans('bolao.betting_list')],
+            (object)['url' => route('rounds', $betting->id), 'title' => trans('bolao.round_list'). " ($betting->title)"],
+            (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
+        ];
+
+        return View('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb', 'routeName'));
     }
 }
