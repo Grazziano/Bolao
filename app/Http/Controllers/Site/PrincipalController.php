@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BettingRepositoryInterface;
+use App\Repositories\Contracts\MatchRepositoryInterface;
 
 class PrincipalController extends Controller
 {
@@ -68,7 +69,8 @@ class PrincipalController extends Controller
 
         $betting = $bettingRepository->findBetting($round_id);
         $page = trans('bolao.match_list');
-        $routeName = "rounds.matches";
+        // $routeName = "rounds.matches";
+        $routeName = "match.result";
 
         $columnList = [
             'id' => '#',
@@ -80,10 +82,15 @@ class PrincipalController extends Controller
 
         $breadcrumb = [
             (object)['url' => route('principal') . '#portfolio', 'title' => trans('bolao.betting_list')],
-            (object)['url' => route('rounds', $betting->id), 'title' => trans('bolao.round_list'). " ($betting->title)"],
+            (object)['url' => route('rounds', $betting->id), 'title' => trans('bolao.round_list') . " ($betting->title)"],
             (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
         ];
 
         return View('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb', 'routeName'));
+    }
+
+    public function result($match_id, MatchRepositoryInterface $matchRepository)
+    {
+        dd("OK");
     }
 }
