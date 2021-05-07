@@ -17,19 +17,39 @@ class PrincipalController extends Controller
     public function signNoLogin($id)
     {
         // return redirect()->route('principal');
-        return redirect(route('principal') . '#portifolio');
+        return redirect(route('principal') . '#portfolio');
     }
 
     public function sign($id, BettingRepositoryInterface $bettingRepository)
     {
         // dd($bettingRepository->BettingUser($id));
         $bettingRepository->BettingUser($id);
-        return redirect(route('principal') . '#portifolio');
+        return redirect(route('principal') . '#portfolio');
     }
 
     public function rounds($betting_id, BettingRepositoryInterface $bettingRepository)
     {
-        $rounds = $bettingRepository->rounds($betting_id);
-        dd($rounds);
+        $columnList = [
+            'id' => '#',
+            'title' => trans('bolao.title'),
+            'betting_title' => trans('bolao.bet'),
+            'date_start_site' => trans('bolao.date_start'),
+            'date_end_site' => trans('bolao.date_end'),
+        ];
+        $page = trans('bolao.round_list');
+
+        $list = $bettingRepository->rounds($betting_id);
+
+        if (!$list) {
+            return redirect(route('principal') . '#portfolio');
+        }
+
+        $breadcrumb = [
+            (object)['url' => route('principal') . '#portfolio', 'title' => trans('bolao.betting_list')],
+            (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
+        ];
+
+        return View('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb'));
+        // dd($rounds);
     }
 }
