@@ -42,6 +42,8 @@ class PrincipalController extends Controller
 
         $list = $bettingRepository->rounds($betting_id);
 
+        $routeName = "rounds.matches";
+
         if (!$list) {
             return redirect(route('principal') . '#portfolio');
         }
@@ -51,7 +53,12 @@ class PrincipalController extends Controller
             (object)['url' => '', 'title' => trans('bolao.list', ['page' => $page])],
         ];
 
-        return View('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb'));
+        return View('site.rounds', compact('list', 'page', 'columnList', 'breadcrumb', 'routeName'));
         // dd($rounds);
+    }
+
+    public function matches($round_id, BettingRepositoryInterface $bettingRepository)
+    {
+        return "OK";
     }
 }

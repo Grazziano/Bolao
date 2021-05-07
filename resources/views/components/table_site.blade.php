@@ -21,7 +21,7 @@
                 @endforeach
                 <td>
 
-                    <a href="#"><i style="color:black" class="material-icons">pageview</i></a>
+                    <a href="{{ route($routeName, $value->id) }}"><i style="color:black" class="material-icons">pageview</i></a>
                 </td>
 
             </tr>

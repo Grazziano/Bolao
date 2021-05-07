@@ -9,7 +9,7 @@
     @breadcrumb_component(['page'=>$page, 'items'=>$breadcrumb ?? []])
     @endbreadcrumb_component
 
-    @table_site_component(['columnList'=>$columnList, 'list'=>$list])
+    @table_site_component(['columnList'=>$columnList, 'list'=>$list, 'routeName' => $routeName])
     @endtable_site_component
 
     @endpage_component
