@@ -63,4 +63,14 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
         }
         return false;
     }
+
+    public function rounds($betting_id)
+    {
+        $user = Auth()->user();
+        $betting = $user->myBetting()->find($betting_id);
+        if ($betting) {
+            return $betting->rounds()->orderBy('date_start', 'desc')->get();
+        }
+        return false;
+    }
 }
