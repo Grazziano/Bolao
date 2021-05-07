@@ -59,6 +59,7 @@ class PrincipalController extends Controller
 
     public function matches($round_id, BettingRepositoryInterface $bettingRepository)
     {
-        return "OK";
+        $list = $bettingRepository->matches($round_id);
+        dd($list->toArray());
     }
 }

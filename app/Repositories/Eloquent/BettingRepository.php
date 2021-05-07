@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\BettingRepositoryInterface;
 use App\Betting;
+use App\Round;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,6 +71,18 @@ class BettingRepository extends AbstractRepository implements BettingRepositoryI
         $betting = $user->myBetting()->find($betting_id);
         if ($betting) {
             return $betting->rounds()->orderBy('date_start', 'desc')->get();
+        }
+        return false;
+    }
+
+    public function matches($round_id)
+    {
+        $user = Auth()->user();
+        $round = Round::find($round_id);
+        $betting_id = $round->betting->id;
+        $betting = $user->myBetting()->find($betting_id);
+        if ($betting) {
+            return $round->matches()->orderBy('date', 'desc')->get();
         }
         return false;
     }
