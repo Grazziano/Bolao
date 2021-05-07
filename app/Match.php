@@ -23,6 +23,11 @@ class Match extends Model
         return $this->belongsTo('App\Round');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
     public function setDateAttribute($value)
     {
         $date = date_create($value);
