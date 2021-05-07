@@ -91,6 +91,7 @@ class PrincipalController extends Controller
 
     public function result($match_id, MatchRepositoryInterface $matchRepository)
     {
-        dd("OK");
+        $match = $matchRepository->match($match_id);
+        dd($match);
     }
 }
