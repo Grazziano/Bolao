@@ -69,5 +69,10 @@ return [
     'match_list' => 'Partidas',
     'match' => 'Partida',
     'result_description' => '(A - Time A, B - Time B, E - Empate)',
+    'view_rounds' => 'Ver Rodadas',
+    'stop' => 'Deixar Bolão',
+    'to_participate' => 'Participar',
+    'close' => 'Fechar',
+    'check_the_rules' => 'Confira as regras',
 
 ];

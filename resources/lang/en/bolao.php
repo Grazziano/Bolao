@@ -69,5 +69,10 @@ return [
     'match_list' => 'Matches',
     'match' => 'Match',
     'result_description' => '(A - Team A, B - Team B, E - Draw)',
+    'view_rounds' => 'View Rounds',
+    'stop' => 'Stop',
+    'to_participate' => 'To Participate',
+    'close' => 'Close',
+    'check_the_rules' => 'Confira as regras',
 
 ];
