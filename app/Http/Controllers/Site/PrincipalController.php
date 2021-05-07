@@ -26,4 +26,9 @@ class PrincipalController extends Controller
         $bettingRepository->BettingUser($id);
         return redirect(route('principal') . '#portifolio');
     }
+
+    public function rounds($id, BettingRepositoryInterface $bettingRepository)
+    {
+        return "Ok";
+    }
 }
